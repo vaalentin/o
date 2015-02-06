@@ -14,10 +14,6 @@ var __BASE__ = __dirname;
 var __SRC__ = __BASE__ + '/app/src';
 var __DIST__ = __BASE__ + '/app/dist';
 
-function onError (err) {
-  gutil.log(err).beep();
-}
-
 function vendor () {
   var fs = require('fs');
   var concat = require('gulp-concat');
@@ -53,7 +49,7 @@ function scripts () {
 
   var shimify = require('browserify-shim');
   var reactify = require('reactify');
-  var es6ify = require('es6ify');
+  var es6ify = require('6to5ify');
 
   var bundler = browserify({
     cache: {},
@@ -64,13 +60,16 @@ function scripts () {
     debug: __DEBUG__
   });
 
+  bundler.transform(reactify)
+    .transform(es6ify)
+    .transform(shimify);
+
   function bundle () {
-    return bundler
-      .transform(reactify)
-      .transform(es6ify.configure(/.jsx/))
-      .transform(shimify)
-      .bundle()
-      .on('error', onError)
+    return bundler.bundle()
+      .on('error', function (err) {
+        gutil.log(err).beep();
+        this.end();
+      })
       .pipe(source('bundle.js'))
       .pipe(__PROD__ ? buffer() : gutil.noop())
       .pipe(__PROD__ ? uglify() : gutil.noop())
