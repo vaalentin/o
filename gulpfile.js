@@ -85,15 +85,18 @@ function scripts () {
   return bundle();
 }
 
-function styles () {
-  var sass = require('gulp-sass');
-  var minify = require('gulp-minify-css');
-  var sourcemaps = require('gulp-sourcemaps');
+var less = require('gulp-less');
+var minify = require('gulp-minify-css');
+var sourcemaps = require('gulp-sourcemaps');
 
+function styles () {
   function bundle () {
-    return gulp.src(__SRC__ + '/styles/main.scss')
+    return gulp.src(__SRC__ + '/styles/main.less')
       .pipe(__DEBUG__ ? sourcemaps.init() : gutil.noop())
-      .pipe(sass())
+      .pipe(less().on('error', function (err) {
+        gutil.log(err).beep();
+        this.end();
+      }))
       .pipe(__PROD__ ? minify() : gutil.noop())
       .pipe(__DEBUG__ ? sourcemaps.write() : gutil.noop())
       .pipe(gulp.dest(__DIST__ + '/css'))
@@ -101,7 +104,7 @@ function styles () {
   }
 
   if (__WATCH__) {
-    gulp.watch(__SRC__ + '/styles/**/*.scss', bundle);
+    gulp.watch(__SRC__ + '/styles/**/*.less', bundle);
   }
 
   return bundle();
