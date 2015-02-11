@@ -25,12 +25,26 @@
     "watchify": "^2.3.0"
   },
   "dependencies": {
+    "director": "^1.2.8",
+    "gsap": "^1.15.1",
     "react": "^0.12.2"
   },
   "browser": {
-    "react": "./node_modules/react/dist/react.js"
+    "react": "./node_modules/react/dist/react-with-addons.js",
+    "director": "./node_modules/director/build/director.js",
+    "tweenlite": "./node_modules/gsap/src/uncompressed/Tweenlite.js",
+    "tweenlite-css": "./node_modules/gsap/src/uncompressed/plugins/CSSPlugin.js",
+    "tweenlite-easing": "./node_modules/gsap/uncompressed/easing/EasePack.js"
   },
   "browserify-shim": {
-    "react": "global:React"
+    "react": "global:React",
+    "director": "global:Router",
+    "tweenlite": {
+      "exports": "global:TweenLite",
+      "deps": [
+        "tweenlite-css",
+        "tweenlite-easing"
+      ]
+    }
   }
 }
