@@ -3,24 +3,38 @@
 import React from 'react';
 import Router from 'director';
 
+import Home from './components/Home';
+import Projects from './components/Projects';
+import Project from './components/Project';
+
 var App = React.createClass({
   getInitialState () {
     return {
-      component: <div />
+      component: <div />,
+      projectId: null
     }
   },
 
   componentDidMount () {
     var home = () => {
-      console.log('home');
+      this.setState({
+        component: <Home key={'home'} />,
+        projectId: null
+      });
     };
 
     var projects = () => {
-      console.log('projects');
+      this.setState({
+        component: <Projects key={'projects'} />,
+        projectId: null
+      });
     };
 
     var project = (projectId) => {
-      console.log('project');
+      this.setState({
+        component: <Project projectId={projectId} key={`project${projectId}`} />,
+        projectId: projectId
+      });
     };
 
     var routes = {
