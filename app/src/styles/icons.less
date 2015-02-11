@@ -1,0 +1,39 @@
+.icon:extend(.iconFont, .inline-block) {
+  font-size: 1.5em;
+
+  color: #fff;
+}
+
+.icon--large {
+  font-size: 4em;
+}
+
+.icon--logo:extend(.icon, .icon--large) {
+  &:before {
+    content: 'a';
+  }
+}
+
+.icon--mail:extend(.icon) {
+  &:before {
+    content: 'b';
+  }
+}
+
+.icon--behance:extend(.icon) {
+  &:before {
+    content: 'c';
+  }
+}
+
+.icon--fb:extend(.icon) {
+  &:before {
+    content: 'd';
+  }
+}
+
+.icon--phone:extend(.icon) {
+  &:before {
+    content: 'f';
+  }
+}
