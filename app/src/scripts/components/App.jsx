@@ -3,9 +3,11 @@
 import React from 'react';
 import Router from 'director';
 
-import Home from './components/Home';
-import Projects from './components/Projects';
-import Project from './components/Project';
+import Content from './Content';
+
+import Home from './Home';
+import Projects from './Projects';
+import Project from './Project';
 
 var App = React.createClass({
   getInitialState () {
