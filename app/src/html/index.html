@@ -3,10 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title> o </title>
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./public/css/main.css">
 </head>
 <body>
-  <script type="text/javascript" src="./js/vendor.js"></script>
-  <script type="text/javascript" src="./js/bundle.js"></script>
+  <script type="text/javascript">
+    (function () {
+      var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+
+      var tests = [
+        function () {
+          if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)
+            || false) {
+            return 'is-mobile ';
+          } else {
+            return '';
+          }
+        },
+        function () {
+          var str1 = 'background-image:';
+          var str2 = 'gradient(linear,left top,right bottom,from(#9f9),to(white));';
+          var str3 = 'linear-gradient(left top,#9f9, white);';
+
+          var css = str1 + prefixes.join(str3 + str1).slice(0, -str1.length);
+          css += str1 + -'webkit-' + str2;
+
+          var el = document.createElement('div');
+          var style = el.style;
+          style.cssText = css;
+
+          if (!(('' + style.backgroundImage).indexOf('gradient') > -1)) {
+            return 'no-gradient ';
+          } else {
+            return '';
+          }
+        },
+        function () {
+          var el = document.createElement('div');
+          var style = el.style;
+          style.cssText = 'background-color:rgba(150,255,150,.5)';
+
+          if (!(('' + style.backgroundColor).indexOf('rgba') > -1)) {
+            return 'no-rgba ';
+          } else {
+            return '';
+          }
+        }
+      ];
+
+      var results = '';
+
+      for (var i = 0, j = tests.length; i < j; ++i) {
+        var test = tests[i];
+        results += test();
+      }
+
+      document.documentElement.className += results;
+    })();
+  </script>
+
+  <script type="text/javascript" src="./public/js/vendor.js"></script>
+  <script type="text/javascript" src="./public/js/bundle.js"></script>
 </body>
 </html>
