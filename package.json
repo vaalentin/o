@@ -36,7 +36,7 @@
     "director": "./node_modules/director/build/director.js",
     "tweenlite": "./node_modules/gsap/src/uncompressed/Tweenlite.js",
     "tweenlite-css": "./node_modules/gsap/src/uncompressed/plugins/CSSPlugin.js",
-    "tweenlite-easing": "./node_modules/gsap/uncompressed/easing/EasePack.js"
+    "tweenlite-easing": "./node_modules/gsap/src/uncompressed/easing/EasePack.js"
   },
   "browserify-shim": {
     "react": "global:React",

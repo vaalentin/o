@@ -51,7 +51,7 @@ from `main.jsx`:
 
 ```javascript
 var img = new Image();
-img.src = 'img/image.jpg';
+img.src = '../public/img/image-03.jpg'
 ```
 
 from `main.scss`:

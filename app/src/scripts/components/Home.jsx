@@ -2,19 +2,16 @@
 
 import React from 'react';
 
-export default React.createClass({
-  componentWillEnter (callback) {
-    callback();
-  },
+import Section from '../mixins/Section';
 
-  componentWillLeave (callback) {
-    console.log('home will leave');
-    callback();
-  },
+export default React.createClass({
+  mixins: [Section],
 
   render () {
     return (
-      <h1> Home </h1>
+      <div className='section--home'>
+        <h1> Home </h1>
+      </div>
     );
   }
 });

@@ -1,0 +1,41 @@
+@menu-color: #fff;
+
+/**
+.menu
+  .menu__section
+    .menu__title
+    .menu__list
+      .menu__item
+        .menu__link
+*/
+
+.menu__title {
+  margin: 0;
+  opacity: 0;
+  color: @menu-color;
+  .transform(translateX(-100%));
+}
+
+.menu__list {
+  list-style-type: none;
+}
+
+.menu__item {
+  opacity: 0;
+  .transform(translateX(-100%));
+}
+
+.menu__link {
+  line-height: 1.5em;
+  position: relative;
+  display: block;
+
+  text-decoration: none;
+
+  opacity: 0.5;
+  color: @menu-color;
+
+  &:hover {
+    opacity: 1;
+  }
+}

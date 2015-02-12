@@ -9,6 +9,9 @@ import Home from './Home';
 import Projects from './Projects';
 import Project from './Project';
 
+import Sidebar from './Sidebar';
+import Menu from './Menu';
+
 var App = React.createClass({
   getInitialState () {
     return {
@@ -50,7 +53,8 @@ var App = React.createClass({
 
   render () {
     return (
-      <div>
+      <div className='app'>
+        <Sidebar projectId={this.state.projectId} />    
         <Content>
           {this.state.component}
         </Content>

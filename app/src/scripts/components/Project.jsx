@@ -2,19 +2,18 @@
 
 import React from 'react';
 
-export default React.createClass({
-  componentWillEnter (callback) {
-    callback();
-  },
+import Section from '../mixins/Section';
 
-  componentWillLeave (callback) {
-    console.log(`project ${this.props.projectId} will leave`);
-    callback();
-  },
+export default React.createClass({
+  mixins: [Section],
 
   render () {
     return (
-      <h1> Project {this.props.projectId} </h1>
+      <div className='project section--project'>
+        <img src='../public/img/image-01.jpg' className='project__image' />
+        <img src='../public/img/image-02.jpg' className='project__image' />
+        <img src='../public/img/image-03.jpg' className='project__image' />
+      </div>
     );
   }
 });
